@@ -24,7 +24,7 @@
 #include "utilities.h"
 #include "legacytypes.h"
 #include "MemoryMap.h"
-#include <SDL.h>
+#include <SDL/SDL.h>
 
 extern SDL_Surface *screen;
 extern Cpu86 *theCPU;

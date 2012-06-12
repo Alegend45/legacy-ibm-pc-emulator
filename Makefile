@@ -1,7 +1,7 @@
 ll:legacy
 
 legacy: DebugOutput.o VideoDriver.o VideoDriverPalette.o VideoDriverPalette1h.o VideoDriverPalette3h.o VideoDriverPaletteUndocumented.o VideoDriverPalette4h.o VideoDriverPalette5h.o VideoDriverPalette6h.o VideoDriverPaletteComposite.o VideoDriverPalette13h.o configuration.o interrupt.o cpu86.o DiskImage.o utilities.o port.o main.o pic.o pit.o disasm.o
-	g++ -Wall -g  DebugOutput.o main.o VideoDriver.o VideoDriverPalette.o VideoDriverPalette1h.o VideoDriverPalette3h.o VideoDriverPaletteUndocumented.o VideoDriverPalette4h.o VideoDriverPalette5h.o VideoDriverPalette6h.o VideoDriverPaletteComposite.o VideoDriverPalette13h.o configuration.o interrupt.o cpu86.o DiskImage.o utilities.o port.o pic.o pit.o disasm.o -o bin/legacy `sdl-config --libs` `pkg-config --cflags sdl` `pkg-config sdl --libs`
+	g++ -Wall -g  DebugOutput.o main.o VideoDriver.o VideoDriverPalette.o VideoDriverPalette1h.o VideoDriverPalette3h.o VideoDriverPaletteUndocumented.o VideoDriverPalette4h.o VideoDriverPalette5h.o VideoDriverPalette6h.o VideoDriverPaletteComposite.o VideoDriverPalette13h.o configuration.o interrupt.o cpu86.o DiskImage.o utilities.o port.o pic.o pit.o disasm.o -o bin/legacy -lSDL -g
 
 pic.o: pic.cpp
 	g++ -Wall -g -c pic.cpp
@@ -19,7 +19,7 @@ VideoDriver.o: VideoDriver.cpp VideoDriver.h
 	g++ -Wall   -g -c VideoDriver.cpp
 
 VideoDriverPalette.o: VideoDriverPalette.cpp VideoDriverPalette.h VideoDriver.cpp VideoDriver.h
-	g++ -Wall   -g `sdl-config --libs` `pkg-config --cflags sdl` `pkg-config sdl --libs` `sdl-config --cflags` -c -g VideoDriverPalette.cpp
+	g++ -Wall   -g -c VideoDriverPalette.cpp
 
 VideoDriverPalette1h.o: VideoDriverPalette1h.cpp VideoDriverPalette1h.h VideoDriverPalette.cpp VideoDriverPalette.h
 	g++ -Wall   -g -c VideoDriverPalette1h.cpp
@@ -64,5 +64,5 @@ disasm.o: disasm.cpp disasm.h cpu86.cpp cpu86.h
 	g++ -Wall   -g -c disasm.cpp
 
 main.o: main.cpp main.h
-	g++  -Wall `sdl-config --libs` `pkg-config --cflags sdl` `pkg-config sdl --libs`  -g -c `sdl-config --cflags` main.cpp
+	g++  -Wall  -g -c  main.cpp
 
