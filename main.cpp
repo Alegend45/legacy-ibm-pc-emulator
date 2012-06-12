@@ -31,7 +31,7 @@
 #include "pic.h"
 #include "pit.h"
 #include "disasm.h"
-#include <SDL.h>
+#include <SDL/SDL.h>
 
 CPic *thePic;
 CPit *thePit;
@@ -321,11 +321,16 @@ keymap[0x3d]=0x4a;	// /
 
 	howManyInstructions=1850;
 	thePic=new CPic();
+	printf("PIC initialized\n");
 	thePit=new CPit();
+	printf("PIT initialized\n");
 	theDebugOutput=new CDebugOutput();
 	theCPU=new Cpu86();
+	printf("CPU initialized\n");
 	theDisasm=new CDisasm86(theCPU);
+	printf("Disassembler initialized\n");
 	theVideo=new CVideoDriverPalette3h(&theCPU->memory[0xb8000]);
+	printf("VGA initialized\n");
 
 	int fileSize=fsize(argv[1]);
 
