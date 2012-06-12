@@ -93,7 +93,7 @@ keymap=new uint8[256];
 asciimap=new uint8[256];
 
 
-#define keymapold 1
+//#define keymapold 1
 
 #ifdef keymapold
 keymap[0x16]=0x0e;	// backspace
@@ -508,14 +508,14 @@ keymap[0x3d]=0x4a;	// /
 				theDisasm->render();
 				eventReady=SDL_WaitEvent(&event);
 				if (event.type==SDL_KEYDOWN) {
-					testScancode=event.key.keysym.scancode;
-					switch(testScancode) {
-						case 67: // F1
+					testScancode=event.key.keysym.sym;
+					switch(event.key.keysym.sym) {
+						case SDLK_F1: // F1
 							//dropOut=true;
 							dropOut=true;
 							printf("cs: %x,ip: %x\n",theCPU->cs,theCPU->ip);
 						break;
-						case 76: // F10
+						case SDLK_F10: // F10
 							//solo
 							//theCPU->ip=0x591;
 							//f15cga
@@ -525,7 +525,7 @@ keymap[0x3d]=0x4a;	// /
 
 						break;
 
-						case 95: // F11
+						case SDLK_F11: // F11
 							//theFloppy->ejectMedia();
 							//theFloppy->insertMedia("/home/jonathan/legacy010405/images/KQ2-2.IMG");
 							//printf("Inserting Wiz Disc\n");
@@ -545,7 +545,7 @@ keymap[0x3d]=0x4a;	// /
 							//alleycat
 							//theCPU->ip=0x62d7;							
 						break;
-						case 96: // F12
+						case SDLK_F12: // F12
 							state=0;
 							dropOut=true;
 						break;
@@ -570,7 +570,7 @@ keymap[0x3d]=0x4a;	// /
 				case SDL_KEYDOWN:
 					testScancode=event.key.keysym.scancode;
 					if (state==0) {
-						if (testScancode==96) {
+						if (event.key.keysym.sym==SDLK_F12) {
 							// go into debugger
 							state=1;
 						} else {
